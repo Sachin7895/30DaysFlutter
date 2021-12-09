@@ -5,13 +5,10 @@ class HomePage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     int days = 30;
-    String name = "Sachin Bisht";
+    String name = "Sachin Bisht"; 
     return Scaffold(
       appBar: AppBar(
-        title: Text(
-          "Catalog App",
-          style: TextStyle(color: Colors.black),
-        ),
+        title: Text("Catalog App",style: TextStyle(color: Colors.black),),
       ),
       body: Center(
         // ignore: avoid_unnecessary_containers
@@ -21,5 +18,5 @@ class HomePage extends StatelessWidget {
       ),
       drawer: MyDrawer(),
     );
-  }
+  } 
 }
