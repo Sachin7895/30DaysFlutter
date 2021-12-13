@@ -1,14 +1,5 @@
 class CatalogModel {
-  static final items = [
-    Item(
-        id: 1,
-        name: "Vivo X50 Pro",
-        desc: "Vivo X Series Professional Photography Phone",
-        price: 9999,
-        color: "	#FFFFFF",
-        image:
-            "https://cdn-files.kimovil.com/phone_front/0006/48/thumb_547311_phone_front_big.jpeg")
-  ];
+  static List<Item>? items = null;
 }
 
 class Item {
@@ -18,6 +9,24 @@ class Item {
   final num price;
   final String color;
   final String image;
+
+  factory Item.fromMap(Map<String, dynamic> map) {
+    return Item(
+        id: map["id"],
+        name: map["name"],
+        desc: map["desc"],
+        price: map["price"],
+        color: map["color"],
+        image: map["image"]);
+  }
+  toMap() => {
+        "id": id,
+        "name": name,
+        "desc": desc,
+        "price": price,
+        "color": color,
+        "image": image,
+      };
 
   Item(
       {required this.id,
