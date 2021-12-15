@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_cata/Pages/splash_Screen.dart';
 import 'package:flutter_cata/utils/routes.dart';
 import 'package:flutter_cata/widgets/theme.dart';
 import 'package:google_fonts/google_fonts.dart';
@@ -18,10 +19,10 @@ class MyApp extends StatelessWidget {
       theme: MyTheme.lightTheme(context),
       darkTheme: MyTheme.darkTheme(context),
       debugShowCheckedModeBanner: false,
-      initialRoute: MyRoutes.homeRoute,
+      // initialRoute: MyRoutes.slash_Screen,
       routes: {
         // ignore: prefer_const_constructors
-        "/": (context) => LoginPage(),
+        "/": (context) => HomePage(),
         // ignore: prefer_const_constructors
         MyRoutes.loginRoute: (context) => LoginPage(),
         MyRoutes.homeRoute: (context) => HomePage(),
