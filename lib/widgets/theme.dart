@@ -6,7 +6,7 @@ class MyTheme {
         primarySwatch: Colors.deepPurple,
         fontFamily: GoogleFonts.poppins().fontFamily,
         appBarTheme: AppBarTheme(
-            color: Colors.white,
+            color: Colors.black,
             elevation: 0.0,
             // ignore: prefer_const_constructors
             iconTheme: IconThemeData(

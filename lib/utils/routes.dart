@@ -4,4 +4,5 @@ class MyRoutes {
   static String homeDetailRoute = "/detail";
   // ignore: non_constant_identifier_names
   static String slash_Screen = "/slashScreen";
+  static String cartRoute = "/cart";
 }
