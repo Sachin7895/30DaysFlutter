@@ -16,14 +16,14 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      themeMode: ThemeMode.light,
+      themeMode: ThemeMode.system,
       theme: MyTheme.lightTheme(context),
       darkTheme: MyTheme.darkTheme(context),
       debugShowCheckedModeBanner: false,
       // initialRoute: MyRoutes.slash_Screen,
       routes: {
         // ignore: prefer_const_constructors
-        "/": (context) => HomePage(),
+        "/": (context) => LoginPage(),
         // ignore: prefer_const_constructors
         MyRoutes.loginRoute: (context) => LoginPage(),
         MyRoutes.homeRoute: (context) => HomePage(),
