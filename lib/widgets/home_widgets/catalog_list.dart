@@ -1,7 +1,10 @@
+// ignore_for_file: unused_local_variable
+
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_cata/Pages/home.dart';
 import 'package:flutter_cata/Pages/home_details_pages.dart';
+import 'package:flutter_cata/models/cart.dart';
 
 import 'package:flutter_cata/models/catalog.dart';
 import 'package:flutter_cata/widgets/home_widgets/catalog_image.dart';
@@ -27,7 +30,7 @@ class CatalogList extends StatelessWidget {
       },
     );
   }
-}  
+}
 
 class CatalogItem extends StatelessWidget {
   final Item catalog;
@@ -55,18 +58,44 @@ class CatalogItem extends StatelessWidget {
               alignment: MainAxisAlignment.spaceBetween,
               children: [
                 "\$${catalog.price}".text.bold.xl.make(),
-                ElevatedButton(
-                    style: ButtonStyle(
-                        backgroundColor: MaterialStateProperty.all(
-                            context.theme.buttonColor),
-                        shape: MaterialStateProperty.all(StadiumBorder())),
-                    onPressed: () {},
-                    child: "Add to Cart".text.make())
+                _AddToCart(catalog: catalog)
               ],
             ).pOnly(right: 8.0)
           ],
         ))
       ],
     )).color(context.cardColor).rounded.square(150).make().p8();
+  }
+}
+
+class _AddToCart extends StatefulWidget {
+  final Item catalog;
+
+  const _AddToCart({Key? key, required this.catalog}) : super(key: key);
+
+  @override
+  State<_AddToCart> createState() => _AddToCartState();
+}
+
+class _AddToCartState extends State<_AddToCart> {
+  bool isAdded = false;
+  @override
+  Widget build(BuildContext context) {
+    return ElevatedButton(
+        style: ButtonStyle(
+            backgroundColor:
+                MaterialStateProperty.all(context.theme.buttonColor),
+            shape: MaterialStateProperty.all(StadiumBorder())),
+        onPressed: () {
+          isAdded = isAdded.toggle();
+          final catalog = CatalogModel();
+          final _cart = CartModel();
+          _cart.catalog = catalog;
+
+          _cart.add(widget.catalog);
+
+          setState(() {});
+        },
+        child: isAdded ? Icon(Icons.done) : "Add to Cart".text.make());
   }
 }
