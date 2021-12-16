@@ -11,6 +11,7 @@ class MyTheme {
         cardColor: Colors.white,
         canvasColor: creamColor,
         buttonColor: darkBluishColor,
+        accentColor: darkcreamColor,
         appBarTheme: AppBarTheme(
             color: Colors.black,
             elevation: 0.0,
@@ -20,8 +21,6 @@ class MyTheme {
             ),
             // ignore: deprecated_member_use
             textTheme: Theme.of(context).textTheme),
-        colorScheme: ColorScheme.fromSwatch(primarySwatch: Colors.deepPurple)
-            .copyWith(secondary: darkBluishColor),
       );
 
   static ThemeData darkTheme(BuildContext context) => ThemeData(
@@ -45,7 +44,7 @@ class MyTheme {
       );
 
   static Color creamColor = Color(0xfff5f5f5);
-  static Color darkcreamColor = Vx.gray900;
+  static Color darkcreamColor = Vx.gray600;
   static Color darkBluishColor = Color(0xff403b58);
-  static Color lightBluishColor = Vx.purple400;
+  static Color lightBluishColor = Vx.purple800;
 }
