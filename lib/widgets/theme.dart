@@ -24,24 +24,26 @@ class MyTheme {
       );
 
   static ThemeData darkTheme(BuildContext context) => ThemeData(
-        fontFamily: GoogleFonts.poppins().fontFamily,
-        brightness: Brightness.dark,
-        cardColor: Colors.black,
-        canvasColor: darkcreamColor,
+      fontFamily: GoogleFonts.poppins().fontFamily,
+      brightness: Brightness.dark,
+      cardColor: Colors.black,
+      canvasColor: darkcreamColor,
+      // ignore: deprecated_member_use
+      accentColor: Colors.white,
+      // ignore: deprecated_member_use
+      buttonColor: lightBluishColor,
+      appBarTheme: AppBarTheme(
+        color: Colors.black,
+        elevation: 0.0,
+        // ignore: prefer_const_constructors
+        iconTheme: IconThemeData(
+          color: Colors.white,
+        ),
         // ignore: deprecated_member_use
-        accentColor: Colors.white,
-        // ignore: deprecated_member_use
-        buttonColor: lightBluishColor,
-        appBarTheme: AppBarTheme(
-            color: Colors.black,
-            elevation: 0.0,
-            // ignore: prefer_const_constructors
-            iconTheme: IconThemeData(
-              color: Colors.white,
-            ),
-            // ignore: deprecated_member_use
-            textTheme: Theme.of(context).textTheme),
-      );
+        textTheme: Theme.of(context).textTheme.copyWith(
+            headline6:
+                context.textTheme.headline6!.copyWith(color: Colors.white)),
+      ));
 
   static Color creamColor = Color(0xfff5f5f5);
   static Color darkcreamColor = Vx.gray600;
