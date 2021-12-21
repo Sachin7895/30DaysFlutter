@@ -34,18 +34,23 @@ class _CartTotal extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final CartModel _cart = (VxState.store as MyStore).cart;
-  
+
     return SizedBox(
       height: 200,
       child: Row(
         mainAxisAlignment: MainAxisAlignment.spaceAround,
         children: [
-          "\$${_cart.totalPrice}"
-              .text
-              .xl5
-              // ignore: deprecated_member_use
-              .color(context.theme.accentColor)
-              .make(),
+          VxConsumer(
+            notifications: {},
+            mutations: {RemoveMutation},
+            builder: (context,MyStore, _) {
+              return "\$${_cart.totalPrice}"
+                  .text
+                  .xl5
+                  .color(context.theme.accentColor)
+                  .make();
+            },
+          ),
           30.widthBox,
           ElevatedButton(
                   onPressed: () {
@@ -65,27 +70,23 @@ class _CartTotal extends StatelessWidget {
   }
 }
 
-class _CartList extends StatelessWidget{
-  
+class _CartList extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
+    VxState.watch(context, on: [RemoveMutation]);
     final CartModel _cart = (VxState.store as MyStore).cart;
     return _cart.items.isEmpty
         ? 'Nothing To Show'.text.xl4.makeCentered()
         : ListView.builder(
             itemCount: _cart.items.length,
-            // ignore: duplicate_ignore
             itemBuilder: (context, index) => ListTile(
-                  leading: Icon(Icons.done),  
-                  // ignore: prefer_const_constructors
-                  trailing: IconButton(
-                    onPressed: () {
-                      _cart.remove(_cart.items[index]);
-                      // setState(() {});
-                    },
-                    icon: Icon(Icons.remove_circle_outline),
-                  ),
-                  title: _cart.items[index].name.text.make(),
-                ));
+              leading: Icon(Icons.done),
+              trailing: IconButton(
+                onPressed: () => RemoveMutation(_cart.items[index]),
+                icon: Icon(Icons.remove_circle_outline),
+              ),
+              title: _cart.items[index].name.text.make(),
+            ),
+          );
   }
 }
