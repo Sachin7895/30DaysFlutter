@@ -1,8 +1,9 @@
 // ignore_for_file: prefer_const_constructors
 
 import 'package:flutter/material.dart';
+import 'package:flutter_cata/core/store.dart';
 import 'package:flutter_cata/models/cart.dart';
-import 'package:flutter_cata/widgets/theme.dart';
+
 import 'package:velocity_x/velocity_x.dart';
 
 class CartPage extends StatelessWidget {
@@ -14,6 +15,7 @@ class CartPage extends StatelessWidget {
         backgroundColor: context.canvasColor,
         appBar: AppBar(
           backgroundColor: Colors.transparent,
+          // ignore: deprecated_member_use
           title: "Cart".text.center.color(context.theme.accentColor).make(),
         ),
         body: Column(
@@ -31,7 +33,8 @@ class _CartTotal extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final _cart = CartModel();
+    final CartModel _cart = (VxState.store as MyStore).cart;
+  
     return SizedBox(
       height: 200,
       child: Row(
@@ -40,6 +43,7 @@ class _CartTotal extends StatelessWidget {
           "\$${_cart.totalPrice}"
               .text
               .xl5
+              // ignore: deprecated_member_use
               .color(context.theme.accentColor)
               .make(),
           30.widthBox,
@@ -51,6 +55,7 @@ class _CartTotal extends StatelessWidget {
                   },
                   style: ButtonStyle(
                       backgroundColor:
+                          // ignore: deprecated_member_use
                           MaterialStateProperty.all(context.theme.buttonColor)),
                   child: "Buy".text.white.make())
               .w32(context)
@@ -60,28 +65,23 @@ class _CartTotal extends StatelessWidget {
   }
 }
 
-class _CartList extends StatefulWidget {
-  const _CartList({Key? key}) : super(key: key);
-
-  @override
-  __CartListState createState() => __CartListState();
-}
-
-class __CartListState extends State<_CartList> {
-  final _cart = CartModel();
+class _CartList extends StatelessWidget{
+  
   @override
   Widget build(BuildContext context) {
+    final CartModel _cart = (VxState.store as MyStore).cart;
     return _cart.items.isEmpty
         ? 'Nothing To Show'.text.xl4.makeCentered()
         : ListView.builder(
-            itemCount: _cart.items?.length,
+            itemCount: _cart.items.length,
+            // ignore: duplicate_ignore
             itemBuilder: (context, index) => ListTile(
                   leading: Icon(Icons.done),  
                   // ignore: prefer_const_constructors
                   trailing: IconButton(
                     onPressed: () {
                       _cart.remove(_cart.items[index]);
-                      setState(() {});
+                      // setState(() {});
                     },
                     icon: Icon(Icons.remove_circle_outline),
                   ),

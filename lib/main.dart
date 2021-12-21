@@ -1,15 +1,17 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_cata/Pages/cart_page.dart';
 import 'package:flutter_cata/Pages/splash_screen.dart';
+import 'package:flutter_cata/core/store.dart';
 import 'package:flutter_cata/utils/routes.dart';
 import 'package:flutter_cata/widgets/theme.dart';
-import 'package:google_fonts/google_fonts.dart';
+import 'package:velocity_x/velocity_x.dart';
 import 'Pages/home.dart';
 import 'Pages/login_page.dart';
-
+import 'models/cart.dart';
+import 'models/catalog.dart';
 
 void main() {
-  runApp(MyApp());
+  runApp(VxState(store: MyStore(CatalogModel(), CartModel()), child: MyApp()));
 }
 
 // ignore: must_be_immutable
