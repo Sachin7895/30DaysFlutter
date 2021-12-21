@@ -20,9 +20,9 @@ class _SplashscreenState extends State<Splashscreen> {
   void initState() {
     // TODO: implement initState
     super.initState();
-    Timer(Duration(seconds: 2), () {
-      Navigator.of(context)
-          .pushReplacement(MaterialPageRoute(builder: (_) => HomePage()));
+    Timer(Duration(seconds: 3), () async {
+      // await Navigator.of(context)
+      //     .pushReplacement(MaterialPageRoute(builder: (_) => HomePage()));
     });
   }
 
@@ -49,7 +49,7 @@ class _SplashscreenState extends State<Splashscreen> {
             ),
           ),
           CircularProgressIndicator(
-            backgroundColor: Colors.red,
+            backgroundColor: Colors.white,
           ),
         ],
       ),

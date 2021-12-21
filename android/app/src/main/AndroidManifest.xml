@@ -1,8 +1,8 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="com.example.flutter_cata">
    <application
-        android:label="flutter_cata"
-        android:icon="@mipmap/ic_launcher">
+        android:label="ShopKart"
+        android:icon="@mipmap/logo">
         <activity
             android:name=".MainActivity"
             android:launchMode="singleTop"
@@ -39,5 +39,5 @@
             android:value="2" />
     </application>
 
-
+ <uses-permission android:name="android.permission.INTERNET"/>
 </manifest>
