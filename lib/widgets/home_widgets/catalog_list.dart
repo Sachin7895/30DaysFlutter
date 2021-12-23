@@ -5,11 +5,10 @@ import 'package:flutter/material.dart';
 
 import 'package:flutter_cata/Pages/home_details_pages.dart';
 
-
 import 'package:flutter_cata/models/catalog.dart';
 import 'package:flutter_cata/widgets/home_widgets/add_to_cart.dart';
 import 'package:flutter_cata/widgets/home_widgets/catalog_image.dart';
- 
+
 import 'package:velocity_x/velocity_x.dart';
 
 class CatalogList extends StatelessWidget {
@@ -17,19 +16,37 @@ class CatalogList extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return ListView.builder(
-      // shrinkWrap: true,
-      itemCount: CatalogModel.items!.length,
-      itemBuilder: (context, index) {
-        final catalog = CatalogModel.items![index];
-        return InkWell(
-            onTap: () => Navigator.push(
-                context,
-                MaterialPageRoute(
-                    builder: (Context) => HomeDetailPage(catalog: catalog))),
-            child: CatalogItem(catalog));
-      },
-    );
+    return !context.isMobile
+        ? GridView.builder(
+            gridDelegate:
+                SliverGridDelegateWithFixedCrossAxisCount(crossAxisCount: 2),
+            shrinkWrap: true,
+            itemCount: CatalogModel.items!.length,
+            itemBuilder: (context, index) {
+              final catalog = CatalogModel.items![index];
+              return InkWell(
+                  onTap: () => Navigator.push(
+                      context,
+                      MaterialPageRoute(
+                          builder: (Context) =>
+                              HomeDetailPage(catalog: catalog))),
+                  child: CatalogItem(catalog));
+            },
+          )
+        : ListView.builder(
+            // shrinkWrap: true,
+            itemCount: CatalogModel.items!.length,
+            itemBuilder: (context, index) {
+              final catalog = CatalogModel.items![index];
+              return InkWell(
+                  onTap: () => Navigator.push(
+                      context,
+                      MaterialPageRoute(
+                          builder: (Context) =>
+                              HomeDetailPage(catalog: catalog))),
+                  child: CatalogItem(catalog));
+            },
+          );
   }
 }
 
@@ -40,21 +57,19 @@ class CatalogItem extends StatelessWidget {
         super(key: key);
   @override
   Widget build(BuildContext context) {
-    return VxBox(
-        child: Row(
-      children: [
-        Hero(
-            tag: Key(catalog.id.toString()),
-            child: CatalogImage(image: catalog.image)),
-        Expanded(
-            child: Column(
+    var children2 = [
+      Hero(
+        tag: Key(catalog.id.toString()),
+        child: CatalogImage(image: catalog.image),
+      ),
+      Expanded(
+        child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
             catalog.name.text.xl.color(context.theme.accentColor).bold.make(),
             catalog.desc.text.make(),
             10.heightBox,
-
             ButtonBar(
               buttonPadding: EdgeInsets.zero,
               alignment: MainAxisAlignment.spaceBetween,
@@ -64,9 +79,21 @@ class CatalogItem extends StatelessWidget {
               ],
             ).pOnly(right: 8.0)
           ],
-        ))
-      ],
-    )).color(context.cardColor).rounded.square(150).make().p8();
+        ).p(context.isMobile ? 0 : 16),
+      )
+    ];
+    return VxBox(
+            child: context.isMobile
+                ? Row(
+                    children: children2,
+                  )
+                : Column(
+                    children: children2,
+                  ))
+        .color(context.cardColor)
+        .rounded
+        .square(150)
+        .make()
+        .p8();
   }
 }
-

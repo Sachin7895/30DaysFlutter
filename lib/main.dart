@@ -9,6 +9,7 @@ import 'Pages/home.dart';
 import 'Pages/login_page.dart';
 import 'models/cart.dart';
 import 'models/catalog.dart';
+import 'widgets/theme.dart';
 
 void main() {
   runApp(VxState(store: MyStore(CatalogModel(), CartModel()), child: MyApp()));

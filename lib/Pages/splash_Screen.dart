@@ -21,8 +21,8 @@ class _SplashscreenState extends State<Splashscreen> {
     // TODO: implement initState
     super.initState();
     Timer(Duration(seconds: 3), () async {
-      // await Navigator.of(context)
-      //     .pushReplacement(MaterialPageRoute(builder: (_) => HomePage()));
+      await Navigator.of(context)
+          .pushReplacement(MaterialPageRoute(builder: (_) => HomePage()));
     });
   }
 
